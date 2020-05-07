@@ -20,6 +20,7 @@ public class PlayerDissolveScr : MonoBehaviour
 
         DefaultMaterial = gameObject.GetComponent<Renderer>().material;
         DissolveMaterial = Resources.Load("Diss2Mat") as Material;
+        //Debug.Log(DissolveMaterial);
     }
 
     void Update ()
