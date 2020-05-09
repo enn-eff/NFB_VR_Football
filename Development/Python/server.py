@@ -4,12 +4,23 @@
 #   Expects b"Hello" from client, replies with b"World"
 #
 
+
+from EEG import EEG
 import time
 import zmq
+
+#region
+#   Class EEG instantiated and  
+#   Get the data stream and send it to unity continuously 
+eegObject = EEG.__init__(self=EEG);
+#endregion
+
 
 context = zmq.Context()
 socket = context.socket(zmq.REP)
 socket.bind("tcp://*:5555")
+
+
 
 while True:
     #  Wait for next request from client
@@ -24,4 +35,5 @@ while True:
 
     #  Send reply back to client
     #  In the real world usage, after you finish your work, send your output here
-    socket.send(b"World")
+    socket.send(eegObject)
+

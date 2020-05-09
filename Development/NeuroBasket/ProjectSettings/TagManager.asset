@@ -15,6 +15,7 @@ TagManager:
   - Kuvet
   - UIManagerTag
   - BasketballTarget
+  - Test
   layers:
   - Default
   - TransparentFX
