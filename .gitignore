@@ -38,7 +38,8 @@ ExportedObj/
 *.tmp
 *.svd
 *.exe
-
+*.txt.meta
+*.csv.meta
  
 # ============ #
 # OS generated #
