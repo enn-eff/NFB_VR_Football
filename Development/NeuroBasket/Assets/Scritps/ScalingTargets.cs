@@ -6,9 +6,8 @@ public class ScalingTargets : MonoBehaviour
 {
     GameObject[] targets;
     public Vector3[] targetsInitialPosition { get; set; }
+    //public Vector3 toScale = 
 
-    //GameObject[] testt;
-    //public List<GameObject> ListOfTargets;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +15,7 @@ public class ScalingTargets : MonoBehaviour
         targetsInitialPosition = new Vector3[targets.Length];
         for (int i =0; i < targets.Length; i++)
         {
+        // stroing initial scaling of all the targets.
             targetsInitialPosition[i] = targets[i].transform.localScale;
         }
     }
@@ -29,19 +29,15 @@ public class ScalingTargets : MonoBehaviour
             Debug.Log(targets);
             foreach (GameObject curr in targets)
             {
+                // scaling target size
                 curr.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             }
-            //testt = GameObject.FindGameObjectsWithTag("Test");
-            //testt[0].transform.localScale = new Vector3(0.5f,0.5f,0.5f);
         }
         if (Input.GetKeyDown("p"))
         {
-            //foreach (GameObject curr in targets)
-            //{
-            //    curr.transform.localScale = targetsInitialPosition(curr);
-            //}
             for (int i =0; i < targets.Length;i++)
             {
+                // restoring targets default scaling
                 targets[i].transform.localScale = targetsInitialPosition[i];
             }
 

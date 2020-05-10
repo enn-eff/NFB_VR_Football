@@ -29,6 +29,7 @@ ExportedObj/
 *.csproj
 *.pidb
 *.pidb.meta
+*.cs.meta
 *.suo
 *.user
 *.unityproj
