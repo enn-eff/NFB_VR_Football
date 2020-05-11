@@ -6,11 +6,12 @@ public class ScalingTargets : MonoBehaviour
 {
     GameObject[] targets;
     public Vector3[] targetsInitialPosition { get; set; }
-    public Vector3 toScale = new Vector3(0f, 0.001f,0.001f); 
+    public Vector3 toScale = new Vector3(0.001f, 0.001f,0.001f); 
 
     // Start is called before the first frame update
     void Start()
     {
+        OnDrawGizmosSelected();
         targets = GameObject.FindGameObjectsWithTag("Target");
         targetsInitialPosition = new Vector3[targets.Length];
         // saving initial positions for temporary uses.
@@ -19,6 +20,13 @@ public class ScalingTargets : MonoBehaviour
         // stroing initial scaling of all the targets.
             targetsInitialPosition[i] = targets[i].transform.localScale;
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, 1);
     }
 
     // Update is called once per frame

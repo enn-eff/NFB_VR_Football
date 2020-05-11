@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.neurobasket.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\mare08-admin\\Nauman\\NFB_VR_Football\\Development\\NeuroBasket\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "NeuroBasket [Testing]"
+        }
+      }
+    }
+  ]
+}
