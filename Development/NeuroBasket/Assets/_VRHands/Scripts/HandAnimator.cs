@@ -19,6 +19,7 @@ public class HandAnimator : MonoBehaviour
     public void OnDestroy()
     {
         m_GrabAction[m_Pose.inputSource].onChange -= Grab;
+
     }
 
     private void OnTriggerEnter2D(Collider other)

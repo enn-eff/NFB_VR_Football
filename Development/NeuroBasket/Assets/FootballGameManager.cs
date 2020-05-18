@@ -7,58 +7,80 @@ public class FootballGameManager : MonoBehaviour {
     public GameObject respawnPrefab;
     public List<GameObject> ListOfRespwPositions;
     public List<GameObject> ListOfTargets;
-    private float MIN_SPEED = 13.0F;
-    private float MAX_SPEED = 26.0F;
-
+    private float MIN_SPEED = 2.0F;
+    private float MAX_SPEED = 6.0F;
+    private float nextActionTime = 0.0f;
+    public float period = 1f;
+    int i = 0;
+    GameObject respawn; // only one respawn position and that is penalty position
 
     void Start()
     {
-        ListOfRespwPositions = new List<GameObject>();
         ListOfTargets = new List<GameObject>();
-        
-        GameObject[] respawns;
-        respawns = GameObject.FindGameObjectsWithTag("RespawnPosition");
         GameObject[] targets;
         targets = GameObject.FindGameObjectsWithTag("Target");
 
-        foreach (GameObject curr in respawns)
-        {
-            ListOfRespwPositions.Add(curr);
-        }
+        respawn = GameObject.FindGameObjectWithTag("RespawnPosition");        
+
         foreach (GameObject curr in targets)
         {
             ListOfTargets.Add(curr);
         }
 
+        //if (Input.GetKeyDown("r"))
+        //{
+        //    pressingKey();
+
+        //}
+        //StartCoroutine(generatingBall());
     }
 
-    // Update is called once per frame
-    void Update ()
-    { 
-        if (Input.GetKeyDown("r"))
-        {
-            int randPosIndex = Random.Range(0, ListOfRespwPositions.Count);
-            int randTargetIndex = Random.Range(0, ListOfTargets.Count);
-            float randomSpeed = Random.Range(MIN_SPEED, MAX_SPEED);
-            Debug.Log("Speed = " + randomSpeed);
-            respawnPrefab.tag = "Fot";
-            GameObject currGameObj = Instantiate(respawnPrefab, ListOfRespwPositions[randPosIndex].transform.position, ListOfRespwPositions[randPosIndex].transform.rotation);
-            StartCoroutine(Move(currGameObj, ListOfTargets[randTargetIndex].gameObject.transform.position, randomSpeed));
-        }
-        else if(Input.GetKeyDown("c"))
-        {
-            GameObject[] clearList;
-            clearList = GameObject.FindGameObjectsWithTag("Fot");
-            foreach (GameObject fot in clearList)
-            {
-                Destroy(fot);
-            }
-        }
-        else if(Input.GetKeyDown("l"))
-        {
+    IEnumerator generatingBall()
+    {
+        
 
+        Vector3 posIndex = respawn.transform.position;
+        Quaternion rotationIndex = respawn.transform.rotation;
+
+        //int randTargetIndex = ;
+        float randomSpeed = Random.Range(MIN_SPEED, MAX_SPEED);
+        //Debug.Log("Speed = " + randomSpeed);
+        respawnPrefab.tag = "Fot";
+        while (i <20)
+        {
+            yield return new WaitForSeconds(5);
+            GameObject currGameObj = Instantiate(respawnPrefab, posIndex, rotationIndex);
+
+            StartCoroutine(Move(currGameObj, ListOfTargets[Random.Range(0, ListOfTargets.Count)].gameObject.transform.position, randomSpeed));
+
+            i++;
         }
+        
     }
+
+    //private void pressingKey()
+    //{
+    //    //int randPosIndex = Random.Range(0, ListOfRespwPositions.Count);
+    //       }
+
+    //// Update is called once per frame
+    //void Update ()
+    //{ 
+
+    //    if(Input.GetKeyDown("c"))
+    //    {
+    //        GameObject[] clearList;
+    //        clearList = GameObject.FindGameObjectsWithTag("Fot");
+    //        foreach (GameObject fot in clearList)
+    //        {
+    //            Destroy(fot);
+    //        }
+    //    }
+    //    else if(Input.GetKeyDown("l"))
+    //    {
+
+    //    }
+    //}
 
     IEnumerator Move(GameObject InGameO, Vector3 InTarget, float speed = 1.0F, float waitTime = 1)
     {
