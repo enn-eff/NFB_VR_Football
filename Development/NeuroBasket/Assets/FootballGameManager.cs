@@ -32,7 +32,7 @@ public class FootballGameManager : MonoBehaviour {
         //    pressingKey();
 
         //}
-        //StartCoroutine(generatingBall());
+        StartCoroutine(generatingBall());
     }
 
     IEnumerator generatingBall()
