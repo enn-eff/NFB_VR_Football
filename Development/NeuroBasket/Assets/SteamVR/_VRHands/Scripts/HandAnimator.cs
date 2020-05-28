@@ -10,12 +10,6 @@ public class HandAnimator : MonoBehaviour
     private SteamVR_Behaviour_Pose m_Pose = null;
     private GameObject rightHand;
 
-    //private void Start()
-    //{
-    //    rightHand = GameObject.Find("Controller (left)");
-    //    rightHand.transform.position = new Vector3(0,0,0);
-    //}
-
     private void Awake()
     {
         m_Animator = GetComponent<Animator>();
@@ -32,13 +26,6 @@ public class HandAnimator : MonoBehaviour
     private void OnColliderEnter (Collision other)
     {
         m_Animator.SetBool("Point", true);
-
-        //Debug.Log("Triggered");
-        //if (other.gameObject.tag.Equals("Fot"));
-        //{
-        //    Debug.Log("Hitting Football");
-        //   // Destroy(gameObject);
-        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -50,21 +37,4 @@ public class HandAnimator : MonoBehaviour
     {
         m_Animator.SetFloat("GrabBlend", axis);
     }
-
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    //Check for a match with the specified name on any GameObject that collides with your GameObject
-    //    if (collision.gameObject.name == "Cube")
-    //    {
-    //        //If the GameObject's name matches the one you suggest, output this message in the console
-    //        Debug.Log("Do something here");
-    //    }
-
-    //    //Check for a match with the specific tag on any GameObject that collides with your GameObject
-    //    if (collision.gameObject.tag == "MyGameObjectTag")
-    //    {
-    //        //If the GameObject has the same tag as specified, output this message in the console
-    //        Debug.Log("Do something else here");
-    //    }
-    //}
 }

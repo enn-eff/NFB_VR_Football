@@ -8,7 +8,7 @@ public class FootballGameManager : MonoBehaviour {
     public List<GameObject> ListOfRespwPositions;
     public List<GameObject> ListOfTargets;
     private float MIN_SPEED = 2.0F;
-    private float MAX_SPEED = 6.0F;
+    private float MAX_SPEED = 12.0F;
     private float nextActionTime = 0.0f;
     public float period = 1f;
     int i = 0;
@@ -19,7 +19,6 @@ public class FootballGameManager : MonoBehaviour {
         ListOfTargets = new List<GameObject>();
         GameObject[] targets;
         targets = GameObject.FindGameObjectsWithTag("Target");
-
         respawn = GameObject.FindGameObjectWithTag("RespawnPosition");        
 
         foreach (GameObject curr in targets)
@@ -27,41 +26,26 @@ public class FootballGameManager : MonoBehaviour {
             ListOfTargets.Add(curr);
         }
 
-        //if (Input.GetKeyDown("r"))
-        //{
-        //    pressingKey();
-
-        //}
         StartCoroutine(generatingBall());
     }
 
     IEnumerator generatingBall()
     {
-        
-
         Vector3 posIndex = respawn.transform.position;
         Quaternion rotationIndex = respawn.transform.rotation;
-
-        //int randTargetIndex = ;
-        float randomSpeed = Random.Range(MIN_SPEED, MAX_SPEED);
-        //Debug.Log("Speed = " + randomSpeed);
         respawnPrefab.tag = "Fot";
+
         while (i <20)
         {
+            float randomSpeed = Random.Range(MIN_SPEED, MAX_SPEED);
             yield return new WaitForSeconds(5);
             GameObject currGameObj = Instantiate(respawnPrefab, posIndex, rotationIndex);
-
             StartCoroutine(Move(currGameObj, ListOfTargets[Random.Range(0, ListOfTargets.Count)].gameObject.transform.position, randomSpeed));
-
             i++;
         }
         
     }
 
-    //private void pressingKey()
-    //{
-    //    //int randPosIndex = Random.Range(0, ListOfRespwPositions.Count);
-    //       }
 
     //// Update is called once per frame
     //void Update ()
