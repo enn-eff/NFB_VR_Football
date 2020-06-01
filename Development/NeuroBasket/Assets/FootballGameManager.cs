@@ -7,11 +7,12 @@ public class FootballGameManager : MonoBehaviour {
     public GameObject respawnPrefab;
     public List<GameObject> ListOfRespwPositions;
     public List<GameObject> ListOfTargets;
-    private float MIN_SPEED = 2.0F;
-    private float MAX_SPEED = 12.0F;
+    private float MIN_SPEED = 10.0F;
+    private float MAX_SPEED = 14.0F;
     private float nextActionTime = 0.0f;
     public float period = 1f;
     int i = 0;
+    public bool test;
     GameObject respawn; // only one respawn position and that is penalty position
 
     void Start()
@@ -35,11 +36,13 @@ public class FootballGameManager : MonoBehaviour {
         Quaternion rotationIndex = respawn.transform.rotation;
         respawnPrefab.tag = "Fot";
 
-        while (i <20)
+        while (i < 200)
         {
+            test = false;
             float randomSpeed = Random.Range(MIN_SPEED, MAX_SPEED);
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(2);
             GameObject currGameObj = Instantiate(respawnPrefab, posIndex, rotationIndex);
+            currGameObj.GetComponent<Rigidbody>().isKinematic = true;
             StartCoroutine(Move(currGameObj, ListOfTargets[Random.Range(0, ListOfTargets.Count)].gameObject.transform.position, randomSpeed));
             i++;
         }
@@ -74,7 +77,6 @@ public class FootballGameManager : MonoBehaviour {
             float step = speed * Time.deltaTime;
             InGameO.transform.position = Vector3.MoveTowards(InGameO.transform.position, InTarget, step);
 
-
             int traX = (int)(InGameO.transform.position.x * 10000); int traY = (int)(InGameO.transform.position.y * 10000); int traZ = (int)(InGameO.transform.position.z * 10000);
             int inTrX = (int)(InTarget.x * 10000); int inTrY = (int)(InTarget.y * 10000); int inTrZ = (int)(InTarget.z * 10000);
 
@@ -82,10 +84,10 @@ public class FootballGameManager : MonoBehaviour {
             {
                 LoopCondition = !LoopCondition;
             }
-
+            
             yield return null;
         }
         yield return new WaitForSeconds(waitTime);
     }
-
+    
 }

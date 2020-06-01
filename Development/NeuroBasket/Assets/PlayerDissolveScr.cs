@@ -25,15 +25,15 @@ public class PlayerDissolveScr : MonoBehaviour
 
     void Update ()
     {
-        if (Input.GetKeyDown("7"))  //Trigger the dissolve animation
+        if (Input.GetKeyDown(KeyCode.Q))  //Trigger the dissolve animation
         {
             gameObject.GetComponent<Renderer>().material = DissolveMaterial;
-            StartCoroutine(DissolveMaterialOverTime(DissolveMaterial, 0, 1, 1, Time.time));
+            StartCoroutine(DissolveMaterialOverTime(DissolveMaterial, 0, 1, 3, Time.time));
 
         }
-        else if (Input.GetKeyDown("8")) //Trigger the fade in animation
+        else if (Input.GetKeyDown(KeyCode.W)) //Trigger the fade in animation
         {
-            StartCoroutine(DissolveMaterialOverTime(DissolveMaterial, 1, 0, 1, Time.time, 1F, 1F, true));
+            StartCoroutine(DissolveMaterialOverTime(DissolveMaterial, 1, 0, 3, Time.time, 1F, 1F, true));
         }
     }
 

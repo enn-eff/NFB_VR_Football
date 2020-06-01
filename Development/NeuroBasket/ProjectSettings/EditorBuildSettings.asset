@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NeuroFootball.unity
-    guid: 5ebec54430935ce41be0ebd4898b8257
+    path: Assets/Scenes/NeuroFootball 1.unity
+    guid: 8cdf50951e5f789438373052fe867a05
   - enabled: 1
     path: Assets/Scenes/Training.unity
-    guid: 218349668b18e0744956e1c940dca885
+    guid: dd16fdec91cac2042b4c31e99f4d1486
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

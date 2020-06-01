@@ -5,29 +5,40 @@ using UnityEngine;
 public class AudienceBehavior : MonoBehaviour
 {
     AudioSource audio;
-    //float IncVolume = 0.8f;
-    //float DecVolume = 0.8f;
-    //float VolumeRate = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
         audio = GetComponent<AudioSource>();
         audio.clip = Resources.Load<AudioClip>("ApplauseCheerSound");
+        audio.volume = 0.5f;
         audio.Play();
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.W))
-    //    {
-    //        IncVolume = IncVolume + (VolumeRate * Time.deltaTime);
-    //        //audio.enabled = !GetComponent<AudioSource>().enabled;
-    //        audio.volume = IncVolume;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Q))
-    //    {
-    //        DecVolume = DecVolume - (VolumeRate * Time.deltaTime);
-    //        audio.volume = DecVolume;
-    //    }
-    //}
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            audio.clip = Resources.Load<AudioClip>("AngryCrowdSoundEffect");
+            audio.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            audio.clip = Resources.Load<AudioClip>("ApplauseCheerSound");
+            audio.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            audio.clip = Resources.Load<AudioClip>("CrowdPanicEffects");
+            audio.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            audio.volume = audio.volume - 0.1f;
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            audio.volume = audio.volume + 0.1f;
+        }
+    }
 }
