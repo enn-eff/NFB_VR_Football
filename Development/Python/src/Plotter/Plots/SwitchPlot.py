@@ -1,12 +1,12 @@
 import pyqtgraph as pg
-from src.Plotter.Plot import Plot
+from Python.src.Plotter.Plot import Plot
 import numpy
-from src.Plotter.utils import generate_color
+from Python.src.Plotter.utils import generate_color
 from scipy import signal
 from PyQt5 import QtCore, QtGui
 import mne
 import time
-from src.Unicorn_Recorder.Filtering import Filtering
+from Python.src.Unicorn_Recorder.Filtering import Filtering
 
 
 class SwitchPlot(Plot):
@@ -39,8 +39,8 @@ class SwitchPlot(Plot):
 
         # create 8 subplots, one for each eeg electrode.
 
-        self.plots = [self.win.addPlot(col=1, row=r, xRange=[0, 1250], yRange=[-1, 1]) for r in range(int(no_plots/2))]   #TODO Doesn't work with uneven number of plots
-        self.plots += [self.win.addPlot(col=2, row=r, xRange=[0, 1250], yRange=[-1, 1]) for r in range(int(no_plots/2))]
+        self.plots = [self.win.addPlot(col=1, row=1, xRange=[0, 1250], yRange=[-1, 1])]
+        self.plots += [self.win.addPlot(col=2, row=1, xRange=[0, 1250], yRange=[-1, 1])]
 
         for index, plot in enumerate(self.plots):
             plot.setLabel(axis='left', text=f"electrode {index + 1}")
@@ -163,11 +163,16 @@ class SwitchPlot(Plot):
                     pen = pg.mkPen(self.colors[index], style=QtCore.Qt.SolidLine)
                     # get the last 1250 elements
                     try:
+                        print(index)
+                        if index == 0:
+                            sel = 1
+                        else :
+                            sel = 3
                         if self.switch_button.isChecked():
                             psd = signal.periodogram(data_to_display, 250)
-                            curve.setData(psd[1][index][:self.freq_cutoff], pen=pen)
+                            curve.setData(psd[1][sel][:self.freq_cutoff], pen=pen)
                         else:
-                            curve.setData(data_to_display[index][:], pen=pen)
+                            curve.setData(data_to_display[sel][:], pen=pen)
                     except Exception:
                         # out of bound exception. We can just ignore it and wait until
                         # the buffer has enough elements in it.

@@ -56,9 +56,9 @@ class MPLPrinter:
 
         if bandpass is not None:
             data = mne.filter.filter_data(data, sfreq=self.sfreq, l_freq=bandpass[0], h_freq=bandpass[1])
-
+            print(bandpass[1])
         if movAvgFilter > 0:
-            data = Filtering.movAvg(data, filter_size=20)
+            data = Filtering.movAvg(data, filter_size=40)
 
         if mode == DetectionMode.TIME:
             for channel in channels:

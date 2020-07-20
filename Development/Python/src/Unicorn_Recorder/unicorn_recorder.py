@@ -7,10 +7,10 @@ Manual Version Number: 1.18.00
 """
 import multiprocessing
 if multiprocessing.current_process().name == "MainProcess":  # TODO this solution is terrible
-    from src.Unicorn_Recorder import get_backend
+    from Python.src.Unicorn_Recorder import get_backend
     UnicornPy = get_backend()
 else:
-    from src.Unicorn_Recorder.Dummies import UnicornInterface
+    from Python.src.Unicorn_Recorder.Dummies import UnicornInterface
     UnicornPy = UnicornInterface
 
 import numpy
@@ -115,7 +115,7 @@ class Unicorn_recorder:
         battery_channel = channels[14]
         counter_channel = channels[15]
         val_ind_channel = channels[16]
-        return eeg_channels, acc_channels, gyro_channels, battery_channel, counter_channel, val_ind_channel
+        return eeg_channels
 
     def start_recording(self, frame_length=10, test_signal_mode=False):
         """ TODO frame_length default value

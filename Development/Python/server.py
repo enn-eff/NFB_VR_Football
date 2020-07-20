@@ -5,7 +5,7 @@
 #
 
 
-from EEG import EEG
+from Python.EEG import EEG
 import time
 import zmq
 
@@ -13,15 +13,12 @@ import zmq
 #   Class EEG instantiated and  
 #   Get the data stream and send it to unity continuously
 if __name__ == "__main__":
-    eegObject = EEG.__init__(self=EEG);
+    eegObject = EEG.__init__(self=EEG)
 #endregion
-
 
     context = zmq.Context()
     socket = context.socket(zmq.REP)
     socket.bind("tcp://*:5555")
-
-
 
     while True:
         #  Wait for next request from client
